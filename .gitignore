@@ -1,6 +1,9 @@
 node_modules
 .env
 
+# front
+/front/node_modules
+
 # Hardhat files
 /cache
 /artifacts
