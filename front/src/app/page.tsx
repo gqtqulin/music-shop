@@ -13,8 +13,8 @@ import ConnectWallet from "@/app/components/ConnectWallet";
 import WaitingForTransactionMessage from "@/app/components/WaitingForTransactionMessage";
 import TransactionErrorMessage from "@/app/components/TransactionErrorMessage";
 
-const HARDHAT_NETWORK_ID = "0x539";
-const MUSIC_SHOP_ADDRESS = "0x5fb000000";
+const HARDHAT_NETWORK_ID = "0x539";                                 // -- chain hardhat id
+const MUSIC_SHOP_ADDRESS = "0x5fb000000";                           // -- music shop address
 
 declare let window: any;
 
