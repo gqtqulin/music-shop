@@ -65,6 +65,11 @@ export default function Home() {
     );
   };
 
+  /**
+   * оборачивает window.ethereum в ethers
+   * устанавливает соединение с контрактом
+   * @param selectedAccount {string} - адрес
+   */
   const _initialize = async (selectedAccount: string) => {
     const provider = new ethers.BrowserProvider(window.ethereum);
     const signer = await provider.getSigner(selectedAccount);
@@ -77,6 +82,9 @@ export default function Home() {
     });
   };
 
+  /**
+   * сброс всех стейтов
+   */
   const _resetState = () => {
     setNetworkError(undefined);
     setTransactionError(undefined);
@@ -88,6 +96,10 @@ export default function Home() {
     });
   };
 
+  /**
+   * проверка на сеть 
+   * @returns {Promise<boolean>} - ответ подключен ли к hardhat сети
+   */
   const _checkNetwork = async (): Promise<boolean> => {
     const chosenChainId = await window.ethereum.request({
       method: "eth_chainId",

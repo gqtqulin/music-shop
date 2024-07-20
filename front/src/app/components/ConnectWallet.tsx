@@ -7,23 +7,27 @@ type ConnectWalletProps = {
     networkError: string | undefined;
 };
 
-const ConnectWallet: React.FunctionComponent<ConnectWalletProps> = ({
+const ConnectWallet: React.FunctionComponent<
+    ConnectWalletProps
+> = ({
     connectWallet,
     dismiss,
-    networkError
+    networkError,
 }) => {
-    <>
-        <div>
-            {networkError && (
-                <NetworkErrorMessage message={networkError} dismiss={dismiss} />
-            )}
-        </div>
+        return (
+            <>
+                <div>
+                    {networkError && (
+                        <NetworkErrorMessage message={networkError} dismiss={dismiss} />
+                    )}
+                </div>
 
-        <p>Please connect your account...</p>
-        <button type="button" onClick={connectWallet}>
-            Connect wallet
-        </button>
-    </>;
-};
+                <p>Please connect your account...</p>
+                <button type="button" onClick={connectWallet}>
+                    Connect wallet
+                </button>
+            </>
+        );
+    };
 
 export default ConnectWallet;
