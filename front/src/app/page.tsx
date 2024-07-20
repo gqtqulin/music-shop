@@ -1,6 +1,6 @@
 "use client";
 
-import 'module-alias/register';
+// import 'module-alias/register';
 
 import React, { useState, useEffect, FormEvent } from "react";
 
@@ -13,8 +13,8 @@ import ConnectWallet from "@/app/components/ConnectWallet";
 import WaitingForTransactionMessage from "@/app/components/WaitingForTransactionMessage";
 import TransactionErrorMessage from "@/app/components/TransactionErrorMessage";
 
-const HARDHAT_NETWORK_ID = "0x539";                                 // -- chain hardhat id
-const MUSIC_SHOP_ADDRESS = "0x5fb000000";                           // -- music shop address
+const HARDHAT_NETWORK_ID = "0x7a69";                                                                // -- chain hardhat id
+const MUSIC_SHOP_ADDRESS = "0x5fbdb2315678afecb367f032d93f642f64180aa3";                           // -- music shop address
 
 declare let window: any;
 
@@ -47,9 +47,10 @@ export default function Home() {
     await _initialize(selectedAddress);
 
     window.ethereum.on(
-      "accountChanged",
+      "accountsChanged",
       async ([newAccount]: [newAccount: string]) => {
-        if (newAccount === undefined) {
+        console.log(`newAccount: ${newAccount}`)
+        if (newAccount !== undefined) {
           return _resetState();
         }
 
@@ -98,12 +99,14 @@ export default function Home() {
 
   /**
    * проверка на сеть 
-   * @returns {Promise<boolean>} - ответ подключен ли к hardhat сети
+   * @returns {boolean} - ответ подключен ли к hardhat сети
    */
   const _checkNetwork = async (): Promise<boolean> => {
     const chosenChainId = await window.ethereum.request({
       method: "eth_chainId",
     });
+
+    console.log(`chosenChainId: ${chosenChainId}`)
 
     if (chosenChainId === HARDHAT_NETWORK_ID) {
       return true;
